@@ -15,33 +15,33 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "students")
-public class Student {
+@Table(name = "teachers")
+public class Teacher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "studentName", nullable = false)
-    private String studentName;
+    @Column(name = "teacherName", nullable = false)
+    private String teacherName;
 
     @Column(unique = true, name = "emailAddress")
     private String emailAddress;
 
     @Column(nullable = true)
-    private String address;
+    private String subject;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Attendance> attendances;
+    private List<Course> courses;
 
-    public Student() {
+    public Teacher() {
     }
 
-    public Student(Long id, String studentName, String address, String emailAddress) {
+    public Teacher(Long id, String teacherName, String subject, String emailAddress) {
         this.id = id;
-        this.studentName = studentName;
-        this.address = address;
+        this.teacherName = teacherName;
+        this.subject = subject;
         this.emailAddress = emailAddress;
     }
 
@@ -61,27 +61,27 @@ public class Student {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getTeacherName() {
+        return teacherName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public List<Attendance> getAttendances() {
-        return attendances;
+    public List<Course> getCourses() {
+        return courses;
     }
 
-    public void setAttendances(List<Attendance> attendances) {
-        this.attendances = attendances;
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
     }
 }
